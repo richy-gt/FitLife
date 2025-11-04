@@ -9,7 +9,7 @@ import android.content.Context
 
 
 object RetrofitClient {
-    private const val BASE_URL = "https://FitLife.com/api/"
+    private const val BASE_URL = "http://10.0.2.2:3000/api/"
 
     private var retrofit: Retrofit? = null
 

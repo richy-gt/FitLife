@@ -12,6 +12,8 @@ import android.content.Intent
 import android.view.View
 import kotlin.jvm.java
 import android.content.Context
+import com.example.fitlife.utils.TokenManager
+import android.widget.Toast
 
 
 class LoginActivity : AppCompatActivity() {
@@ -81,7 +83,7 @@ class LoginActivity : AppCompatActivity() {
 
             result.onSuccess { response ->
                 if (response.success) {
-                    // Guardar token
+
                     saveToken(response.token)
 
                     Toast.makeText(this, "Bienvenido ${response.user?.name}", Toast.LENGTH_SHORT).show()
@@ -102,8 +104,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun saveToken(token: String?) {
         token?.let {
-            val sharedPref = getSharedPreferences("auth", Context.MODE_PRIVATE)
-            sharedPref.edit().putString("token", it).apply()
+            TokenManager.saveToken(this, it)
         }
     }
 }
